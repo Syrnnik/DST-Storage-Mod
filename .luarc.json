@@ -1,0 +1,40 @@
+{
+  "diagnostics": {
+    "disable": [
+      "lowercase-global"
+    ],
+    "globals": [
+      "GLOBAL",
+      "TheNet",
+      "TheWorld",
+      "TheSim",
+      "Ents",
+      "TUNING",
+      "STRINGS",
+      "PrefabFiles",
+      "PrefabPostInit",
+      "AddPrefabPostInit",
+      "AddPlayerPostInit",
+      "AddSimPostInit",
+      "modimport",
+      "AddClassPostConstruct",
+      "Button",
+      "SendModRPCToServer",
+      "MOD_RPC",
+      "AddModRPCHandler",
+      "AddClientModRPCHandler",
+      "SendRPCToClient",
+      "Widget",
+      "Class",
+      "Text",
+      "ScrollList",
+      "DEFAULTFONT",
+      "ThePlayer",
+      "ANCHOR_MIDDLE",
+      "SCALEMODE_PROPORTIONAL",
+      "GetInventoryItemAtlas",
+      "NEWFONT_OUTLINE",
+      "HUD_ATLAS"
+    ]
+  }
+}
