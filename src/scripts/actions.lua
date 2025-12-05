@@ -1,7 +1,7 @@
 local ImageButton = require("widgets/imagebutton")
 local json = GLOBAL.json or require("json")
 local inspect = require("inspect")
-local StoragePanel = require("chestspanel")
+local StoragePanel = require("storagepanel")
 
 -- Кнопка на HUD (клиент)
 AddClassPostConstruct("widgets/controls", function(controls)
