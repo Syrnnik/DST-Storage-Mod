@@ -5,10 +5,6 @@ local TEMPLATES = require("widgets/templates")
 local Grid = require("widgets/grid")
 local ImageButton = require("widgets/imagebutton")
 
--- TODO: add loading state
--- TODO: set loading to true on open
--- TODO: if loading, show spinner
-
 ----------------------------------------------------------
 -- Панель Списка Сундуков и их Предметов
 ----------------------------------------------------------
@@ -31,10 +27,10 @@ local ChestsPanel = Class(Widget, function(self, chests)
   ------------------------------------------------------
   -- Панель
   ------------------------------------------------------
-  self.panel = self:AddChild(TEMPLATES.CenterPanel(1, 1, false, 200, 400))
+  self.panel = self:AddChild(TEMPLATES.CenterPanel())
   self.panel:SetPosition(0, 0)
 
-  self.title = self.panel:AddChild(Text(NEWFONT_OUTLINE, 48, "Сундуки"))
+  self.title = self.panel:AddChild(Text(NEWFONT_OUTLINE, 56, "Склад"))
   self.title:SetPosition(0, 240)
 
   ------------------------------------------------------
@@ -44,58 +40,28 @@ local ChestsPanel = Class(Widget, function(self, chests)
   self.grid:SetPosition(0, 0)
 
   ------------------------------------------------------
-  -- Кнопка Закрытия
+  -- Кнопка Назад/Закрыть
   ------------------------------------------------------
-  self.close_btn = self.panel:AddChild(TEMPLATES.BackButton(
-    function()
+  self.back_btn = self.panel:AddChild(TEMPLATES.BackButton(function()
+    if not self.current_chest then
       self:Close()
-    end,
-    "Закрыть",
-    {
-      x = 30,
-      y = 0,
-    }
-  ))
-  self.close_btn:SetPosition(-360, 240)
+    end
+    self:ShowChestsList(self.chests)
+  end, ""))
+  self.back_btn:SetPosition(-360, 240)
 
   ------------------------------------------------------
-  -- Кнопка Назад
+  -- Лоадер
   ------------------------------------------------------
-  self.back_btn = self.panel:AddChild(TEMPLATES.BackButton(
-    function()
-      self:ShowChestsList()
-    end,
-    "Назад",
-    {
-      x = 10,
-      y = 0,
-    }
-  ))
-  self.back_btn:SetPosition(-360, 240)
+  self.loader =
+    self.panel:AddChild(Text(NEWFONT_OUTLINE, 36, "Загружаем.."))
+  self.loader:SetPosition(0, 0)
 
   ------------------------------------------------------
   -- Первичное заполнение
   ------------------------------------------------------
   self:ShowChestsList(self.chests)
 end)
-
-----------------------------------------------------------
--- Обновление Списка Сундуков
-----------------------------------------------------------
-function ChestsPanel:UpdateChests(chests)
-  self.chests = chests or {}
-
-  -- Список виджетов
-  local slots = self:CreateChestsSlots()
-
-  -- Очищаем текущий грид
-  self.grid:Clear()
-  -- Перезаполняем грид сундуками
-  self.grid:FillGrid(self.cols, self.coffset, self.roffset, slots)
-
-  -- Центрируем грид
-  self:CenterGrid(slots)
-end
 
 ----------------------------------------------------------
 -- Создание Слотов для Каждого Сундука
@@ -140,9 +106,6 @@ end
 function ChestsPanel:ShowChestItems(chest)
   self.current_chest = chest
 
-  self.back_btn:Show()
-  self.close_btn:Hide()
-
   -- Очищаем текущий грид
   self.grid:Clear()
 
@@ -170,25 +133,35 @@ function ChestsPanel:CreateItemSlot(item)
   slot.icon = slot:AddChild(Image(GetInventoryItemAtlas(tex), tex))
 
   if item.count and item.count > 1 then
-    slot.count = slot:AddChild(Text(NEWFONT_OUTLINE, 32, tostring(item.count)))
-    slot.count:SetPosition(20, -20)
+    slot.count = slot:AddChild(Text(NUMBERFONT, 32, tostring(item.count)))
+    slot.count:SetPosition(0, 16)
   end
 
   return slot
 end
 
 ----------------------------------------------------------
--- Показываем список сундуков
+-- Обновляем и Показываем Список Сундуков
 ----------------------------------------------------------
 function ChestsPanel:ShowChestsList(chests)
   -- Сбрасываем текущий сундук
   self.current_chest = nil
 
-  self.back_btn:Hide()
-  self.close_btn:Show()
+  self.loader:Hide()
 
-  -- Обновляем список сундуков
-  self:UpdateChests(chests or self.chests)
+  -- Обновляем Список Сундуков
+  self.chests = chests or {}
+
+  -- Собираем Список Слотов
+  local slots = self:CreateChestsSlots()
+
+  -- Очищаем Текущий Грид
+  self.grid:Clear()
+  -- Перезаполняем Грид Сундуками
+  self.grid:FillGrid(self.cols, self.coffset, self.roffset, slots)
+
+  -- Центрируем Грид
+  self:CenterGrid(slots)
 end
 
 ----------------------------------------------------------
@@ -205,6 +178,7 @@ function ChestsPanel:CenterGrid(slots)
   local center_y = height / 2
 
   self.grid:SetPosition(center_x, center_y)
+  self.grid:Show()
 end
 
 ----------------------------------------------------------
@@ -213,6 +187,9 @@ end
 function ChestsPanel:Open()
   self:Show()
   self:SetFocus()
+
+  self.loader:Show()
+  self.grid:Hide()
 end
 
 ----------------------------------------------------------
