@@ -1,7 +1,7 @@
 local ImageButton = require("widgets/imagebutton")
 local json = GLOBAL.json or require("json")
 local inspect = require("inspect")
-local ChestsPanel = require("chestspanel")
+local StoragePanel = require("chestspanel")
 
 -- Кнопка на HUD (клиент)
 AddClassPostConstruct("widgets/controls", function(controls)
@@ -70,9 +70,9 @@ function ToggleStorageMenu(player)
 
   -- Создаём окно, если его ещё нет
   if not storage_menu then
-    player.HUD.storage_menu = player.HUD:AddChild(ChestsPanel())
-    -- GLOBAL.TheFrontEnd.overlayroot:AddChild(ChestsPanel())
-    -- controls.top_root:AddChild(ChestsPanel())
+    player.HUD.storage_menu = player.HUD:AddChild(StoragePanel())
+    -- GLOBAL.TheFrontEnd.overlayroot:AddChild(StoragePanel())
+    -- controls.top_root:AddChild(StoragePanel())
     storage_menu = player.HUD.storage_menu
   end
 

@@ -8,8 +8,8 @@ local ImageButton = require("widgets/imagebutton")
 ----------------------------------------------------------
 -- Панель Списка Сундуков и их Предметов
 ----------------------------------------------------------
-local ChestsPanel = Class(Widget, function(self, chests)
-  Widget._ctor(self, "ChestsPanel")
+local StoragePanel = Class(Widget, function(self, chests)
+  Widget._ctor(self, "StoragePanel")
   self:Close()
 
   self.slot_size = 70
@@ -66,7 +66,7 @@ end)
 ----------------------------------------------------------
 -- Создание Слотов для Каждого Сундука
 ----------------------------------------------------------
-function ChestsPanel:CreateChestsSlots()
+function StoragePanel:CreateChestsSlots()
   local widgets = {}
 
   for _, chest in ipairs(self.chests) do
@@ -82,7 +82,7 @@ end
 ----------------------------------------------------------
 -- Создание Слота для Сундука
 ----------------------------------------------------------
-function ChestsPanel:CreateChestSlot(item, chest)
+function StoragePanel:CreateChestSlot(item, chest)
   local slot = ImageButton("images/hud.xml", "inv_slot.tex")
 
   -- Иконка
@@ -103,7 +103,7 @@ end
 ----------------------------------------------------------
 -- Показываем Содержимое Сундука
 ----------------------------------------------------------
-function ChestsPanel:ShowChestItems(chest)
+function StoragePanel:ShowChestItems(chest)
   self.current_chest = chest
 
   -- Очищаем текущий грид
@@ -126,7 +126,7 @@ end
 ----------------------------------------------------------
 -- Создание Слота для Предмета
 ----------------------------------------------------------
-function ChestsPanel:CreateItemSlot(item)
+function StoragePanel:CreateItemSlot(item)
   local slot = ImageButton("images/hud.xml", "inv_slot.tex")
 
   local tex = item.name .. ".tex"
@@ -143,7 +143,7 @@ end
 ----------------------------------------------------------
 -- Обновляем и Показываем Список Сундуков
 ----------------------------------------------------------
-function ChestsPanel:ShowChestsList(chests)
+function StoragePanel:ShowChestsList(chests)
   -- Сбрасываем текущий сундук
   self.current_chest = nil
 
@@ -167,7 +167,7 @@ end
 ----------------------------------------------------------
 -- Центрирование Грида
 ----------------------------------------------------------
-function ChestsPanel:CenterGrid(slots)
+function StoragePanel:CenterGrid(slots)
   local num_items = #slots
   local rows = math.ceil(num_items / self.cols)
 
@@ -184,7 +184,7 @@ end
 ----------------------------------------------------------
 -- Открытие Панель
 ----------------------------------------------------------
-function ChestsPanel:Open()
+function StoragePanel:Open()
   self:Show()
   self:SetFocus()
 
@@ -195,8 +195,8 @@ end
 ----------------------------------------------------------
 -- Закрытие Панели
 ----------------------------------------------------------
-function ChestsPanel:Close()
+function StoragePanel:Close()
   self:Hide()
 end
 
-return ChestsPanel
+return StoragePanel
