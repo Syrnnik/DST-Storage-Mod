@@ -8,7 +8,7 @@ AddClassPostConstruct("widgets/controls", function(controls)
   controls.storageBtn = controls.top_root:AddChild(
     ImageButton("images/inventoryimages.xml", "treasurechest.tex")
   )
-  controls.storageBtn:SetPosition(-300, -220)
+  controls.storageBtn:SetPosition(550, -900)
   controls.storageBtn:SetScale(1)
   controls.storageBtn:SetTooltip("Открыть склад")
   controls.storageBtn:SetOnClick(function()
