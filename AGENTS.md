@@ -15,14 +15,16 @@
 ## Структура проекта
 
 - `src/modmain.lua` точка входа и подключение модулей
-- `src/scripts/client_controls.lua` кнопка в HUD, hotkey и открытие панели
-- `src/scripts/server_rpc.lua` серверный RPC-обработчик выдачи данных склада
-- `src/scripts/client_rpc.lua` клиентский RPC-обработчик и проброс данных в UI
-- `src/scripts/settings.lua` чтение настроек мода
-- `src/scripts/storage.lua` серверная логика и хранение данных склада
-- `src/scripts/logger.lua` общий debug-логгер
-- `src/scripts/storagepanel.lua` UI панели склада
-- `src/modinfo.lua` метаданные мода
+- `src/scripts/sv_modenv.lua` мост к DST API и глобалам
+- `src/scripts/sv_settings.lua` чтение настроек и UI-констант
+- `src/scripts/sv_logger.lua` общий debug-логгер
+- `src/scripts/sv_storage.lua` серверная логика и хранение данных склада
+- `src/scripts/sv_server_rpc.lua` серверный RPC-обработчик выдачи данных склада
+- `src/scripts/sv_client_rpc.lua` клиентский RPC-обработчик и проброс данных в UI
+- `src/scripts/sv_client_controls.lua` кнопка в HUD, hotkey и открытие панели
+- `src/scripts/sv_storagepanel.lua` UI панели склада
+- `src/scripts/tableutils.lua` общие утилиты для таблиц
+- `src/modinfo.lua` метаданные и настройки мода
 
 ## Ограничения
 
@@ -31,7 +33,7 @@
 
 ## Принципы кода
 
-- UI сущности в духе `StoragePanel` писать классом через `Class(Widget, ...)`
+- UI-сущности в духе `StoragePanel` писать классом через `Class(Widget, ...)`
 - Поведение и состояние панели держать в методах класса через `:` когда используется `self`
 - Маленькие утилиты без состояния панели выносить в `local function`
 - Публичное поведение панели оставлять методами класса, а вспомогательную логику скрывать в локальных функциях
@@ -48,6 +50,7 @@
 - Перед началом работы проверить `git status` и текущую ветку
 - Перед пушем проверить staged diff и осмысленность коммита
 - Пушить изменения напрямую в `dev`
+- Папка `assets/` используется только для изображений README и репозитория
 
 ## Типы коммитов
 
