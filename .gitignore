@@ -1,0 +1,7 @@
+/scripts/
+
+.DS_Store
+
+*.zip
+.vscode/
+.codex/
