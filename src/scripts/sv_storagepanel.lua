@@ -4,11 +4,10 @@ local Text = require("widgets/text")
 local TEMPLATES = require("widgets/templates")
 local ImageButton = require("widgets/imagebutton")
 local ScrollableList = require("widgets/scrollablelist")
+local Settings = require("sv_settings")
 
 local GRID_COLUMNS = 12
-local GRID_CELL_WIDTH = 64
 local GRID_SLOT_SCALE = 0.8
-local GRID_ROW_HEIGHT = 64
 local GRID_VISIBLE_ROWS = 4
 
 local StoragePanel = Class(Widget, function(self, items)
@@ -42,7 +41,7 @@ local StoragePanel = Class(Widget, function(self, items)
   self.empty_text:Hide()
 
   self.items_list = self.panel:AddChild(
-    ScrollableList({}, 700, 360, GRID_ROW_HEIGHT, GRID_VISIBLE_ROWS)
+    ScrollableList({}, 700, 360, Settings.VERTICAL_GAP, GRID_VISIBLE_ROWS)
   )
   self.items_list:SetPosition(0, -20)
   self.items_list:Hide()
@@ -82,7 +81,7 @@ local function CreateGridRow(items, start_index)
       break
     end
 
-    local x = start_x + (column - 1) * GRID_CELL_WIDTH
+    local x = start_x + (column - 1) * Settings.HORIZONTAL_GAP
     CreateItemCell(row, item, x, y)
   end
 

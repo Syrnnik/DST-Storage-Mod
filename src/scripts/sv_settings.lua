@@ -109,4 +109,8 @@ Settings.BUTTON_ICON_ATLAS = "images/inventoryimages.xml"
 Settings.BUTTON_ICON_TEX = "treasurechest.tex"
 Settings.BUTTON_TOOLTIP = "Открыть Склад"
 
+-- UI grid layout in storage panel
+Settings.HORIZONTAL_GAP = 64
+Settings.VERTICAL_GAP = 64
+
 return Settings
