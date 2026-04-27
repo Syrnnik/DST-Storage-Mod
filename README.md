@@ -19,27 +19,11 @@ A Don't Starve Together mod that adds a quick Storage panel to view aggregated i
 
 ## Configuration
 
-- `SIGN_RADIUS` controls minisign lookup radius
-- `ALLOW_TREASURECHEST` enables or disables treasure chest tracking
-- `ALLOW_ICEBOX` enables or disables ice box tracking
-- `ALLOW_SALTBOX` enables or disables salt box tracking
-- `ALLOW_DRAGONFLYCHEST` enables or disables scaled chest tracking
-
-## Project Structure
-
-- `src/modmain.lua` mod entrypoint and module wiring
-- `src/scripts/sv_modenv.lua` DST environment bridge
-- `src/scripts/sv_settings.lua` settings and UI constants
-- `src/scripts/sv_logger.lua` debug logger
-- `src/scripts/sv_storage.lua` server storage tracking and aggregation
-- `src/scripts/sv_server_rpc.lua` server RPC handlers
-- `src/scripts/sv_client_rpc.lua` client RPC handlers and payload mapping
-- `src/scripts/sv_client_controls.lua` HUD button and hotkey logic
-- `src/scripts/sv_storagepanel.lua` storage panel widget
-- `src/scripts/tableutils.lua` shared table utilities
-
-## Development
-
-- Run checks with `just check`
-- Deploy local build with `just deploy`
-- Override deploy target with `DST_LOCAL_MOD_DIR`
+| Setting label | Description | Values and default |
+| --- | --- | --- |
+| `Debug Logs` | Enables extra debug output in client and server logs | `Disabled` or `Enabled`<br>Default: `Disabled` |
+| `Storage Sign Radius` | Defines how far from a container the mod searches for a minisign | `1` to `4`<br>Default: `2` |
+| `Track Treasure Chest` | Enables tracking for treasure chests | `Enabled` or `Disabled`<br>Default: `Enabled` |
+| `Track Ice Box` | Enables tracking for ice boxes | `Enabled` or `Disabled`<br>Default: `Enabled` |
+| `Track Salt Box` | Enables tracking for salt boxes | `Enabled` or `Disabled`<br>Default: `Enabled` |
+| `Track Scaled Chest` | Enables tracking for scaled chests | `Enabled` or `Disabled`<br>Default: `Enabled` |
