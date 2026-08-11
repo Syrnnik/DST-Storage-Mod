@@ -25,6 +25,7 @@
 - `src/scripts/sv_storagepanel.lua` UI панели склада
 - `src/scripts/tableutils.lua` общие утилиты для таблиц
 - `src/modinfo.lua` метаданные и настройки мода
+- `src/modicon.tex` и `src/modicon.xml` иконка мода для списка модов и Workshop
 
 ## Ограничения
 
