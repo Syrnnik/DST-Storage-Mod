@@ -1,5 +1,8 @@
 name = "Storage Viewer"
-description = "Add Storage button to view your storage from any place"
+description =
+  [[Adds a Storage button and a hotkey (K) that show every item kept in your marked containers, with total counts.
+
+Place a Mini Sign next to a container to mark it as storage. Chests, Ice Boxes, Salt Boxes and Scaled Chests are supported and can be turned off individually in the settings.]]
 author = "Syrnnik"
 version = "1.0"
 api_version = 10
@@ -8,6 +11,7 @@ icon = "modicon.tex"
 dst_compatible = true
 all_clients_require_mod = true
 server_only_mod = false
+server_filter_tags = { "storage", "ui", "qol", "containers" }
 
 configuration_options = {
   {
